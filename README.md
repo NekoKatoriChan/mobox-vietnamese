@@ -44,7 +44,7 @@ Mesa VirGL, Turnip, Wine Mono và Gecko có thể cài qua wine Start menu.
 ## Settings
 ### Biến dynarec Box86 và Box64
 Có hai menu có thể chuyển đổi để đổi biến Dynarec trong menu cài đặt mobox.
-Để biết thêm thông tin về các biến dynarec, hãy xem [Box64 usage](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) and [Box86 usage](https://github.com/ptitSeb/box86/blob/master/docs/USAGE.md)
+Để biết thêm thông tin về các biến dynarec, hãy xem [Cách sử dụng Box64](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) và [Cách sử dụng Box86](https://github.com/ptitSeb/box86/blob/master/docs/USAGE.md)
 ### Cài đặt hệ thống
 Để đổi locale wine,mẫu dxvk hud hoặc cài đặt Turnip , dùng menu `Cài đặt hệ thống` trong mobox.
 Độ phân giải dự phòng chỉ được sử dụng khi không thể tự động phát hiện độ phân giải x11.
