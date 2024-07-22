@@ -36,7 +36,7 @@ pkg install hashdeep -y &>/dev/null
 pkg install termux-x11-nightly -y &>/dev/null
 
 if [ -e $PREFIX/glibc ]; then
-    echo -n "Gỡ môi trường glibc cũ, tiếp tục chứ ? (C/k) "
+    echo -n "Gỡ môi trường glibc cũ, tiếp tục chứ ? (C/n) "
     read i
     if [ "$i" = "C" ] || [ "$i" = "c" ]; then
         rm -rf $PREFIX/glibc
