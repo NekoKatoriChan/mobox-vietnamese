@@ -16,7 +16,7 @@ Tiếng Việt
 &nbsp;&nbsp;| &nbsp;&nbsp;
 <a href="https://github.com/olegos2/mobox/blob/main/README-id.md">Bahasa Indonesia</a>
 &nbsp;&nbsp;| &nbsp;&nbsp;
-<a href="https://github.com/NekoKatoriChan/mobox/blob/main/README.md">English</a>
+<a href="https://github.com/NekoKatoriChan/mobox/blob/main/README-en.md">English</a>
 
 ##
 
