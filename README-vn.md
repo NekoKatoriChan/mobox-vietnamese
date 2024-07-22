@@ -1,6 +1,6 @@
 ![logo](docs/img/logo.png "logo")
 
-English
+Tiếng Việt
 &nbsp;&nbsp;| &nbsp;&nbsp;
 <a href="https://github.com/olegos2/mobox/blob/main/README-ru.md">Русский</a>
 &nbsp;&nbsp;| &nbsp;&nbsp;
@@ -16,7 +16,7 @@ English
 &nbsp;&nbsp;| &nbsp;&nbsp;
 <a href="https://github.com/olegos2/mobox/blob/main/README-id.md">Bahasa Indonesia</a>
 &nbsp;&nbsp;| &nbsp;&nbsp;
-<a href="https://github.com/NekoKatoriChan/mobox/blob/main/README-vn.md">Tiếng Việt</a>
+<a href="https://github.com/NekoKatoriChan/mobox/blob/main/README.md">English</a>
 
 ##
 
