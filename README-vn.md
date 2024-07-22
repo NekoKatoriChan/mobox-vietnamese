@@ -93,7 +93,7 @@ Cảm ơn Hugo, JeezDisReez, ptitSeb, MishkaKolos, Xanzo, Jotaros, Maxython và 
 [MishkaKolos Discord](https://discord.gg/ZAQnZzbCXq)
 
 
-## Ứng dụng bên thứ ba
+## Công cụ bên thứ ba
 
 [glibc-packages](https://github.com/termux-pacman/glibc-packages)
 
