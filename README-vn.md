@@ -35,7 +35,7 @@ curl -s -o ~/x https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/insta
 ```
 
 3. Nhập `mobox` trong Termux khi cài xong.
-4. 
+
 # Cấu hình
 ## Wine
 Wine có thể cài và gỡ cài đặt nó ở `Quản lý gói` trong mobox menu.
