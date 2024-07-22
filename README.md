@@ -16,6 +16,8 @@ English
 &nbsp;&nbsp;| &nbsp;&nbsp;
 <a href="https://github.com/olegos2/mobox/blob/main/README-id.md">Bahasa Indonesia</a>
 
+<a href="https://github.com/NekoKatoriChan/mobox/blob/main/README-vn.md">Tiếng Việt</a>
+
 ##
 
 `Mobox` is a project designed to run windows x86 applications in [Termux](https://github.com/termux/termux-app) using [Box64](https://github.com/ptitSeb/box64) and [Wine](https://www.winehq.org/).
