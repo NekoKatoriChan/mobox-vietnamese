@@ -48,7 +48,7 @@ Có hai menu có thể chuyển đổi để đổi biến Dynarec trong menu c�
 ### Cài đặt hệ thống
 Để đổi locale wine,mẫu dxvk hud hoặc cài đặt Turnip , dùng menu `Cài đặt hệ thống` trong mobox.
 Độ phân giải dự phòng chỉ được sử dụng khi không thể tự động phát hiện độ phân giải x11.
-Nếu bạn dùng Snapdragon 8 Gen 1, 8+ Gen 1, 7+ Gen 2, mở lựa chọn thứ hai trong `select a7xx flickering fix (TU_DEBUG)` ở menu `Cài đặt hệ thống`.
+Nếu bạn dùng Snapdragon 8 Gen 1, 8+ Gen 1, 7+ Gen 2, mở lựa chọn thứ hai trong `Chọn TU_DEBUG` ở menu `Cài đặt hệ thống`.
 ### Cài đặt Root
 Nếu thiết bị của bạn có root, bạn có thể sử dụng bộ điều chỉnh OOM rất hữu ích khi Termux bị dừng do thiếu bộ nhớ.
 ## Tùy chọn Termux-X11
