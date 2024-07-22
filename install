@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm ~/nekobox-install
+rm ~/x
 
 echo "Đang cài đặt termux-am
 "
