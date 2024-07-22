@@ -16,6 +16,8 @@ English
 &nbsp;&nbsp;| &nbsp;&nbsp;
 <a href="https://github.com/olegos2/mobox/blob/main/README-id.md">Bahasa Indonesia</a>
 
+<a href="
+
 ##
 
 `Mobox` là một dự án thiết kế để chạy ứng dụng Windows x86 trên [Termux](https://github.com/termux/termux-app) dùng [Box64](https://github.com/ptitSeb/box64) và [Wine](https://www.winehq.org/).
@@ -29,7 +31,7 @@ English
 2. Mở Termux và dán lệnh dưới
 
 ```bash
-curl -s -o ~/x https://raw.githubusercontent.com/olegos2/mobox/main/install && . ~/x
+curl -s -o ~/x https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/install && . ~/x
 ```
 
 3. Nhập `mobox` trong Termux khi cài xong.
