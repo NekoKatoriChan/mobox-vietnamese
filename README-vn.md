@@ -23,9 +23,9 @@ Tiếng Việt
 `Mobox` là một dự án thiết kế để chạy ứng dụng Windows x86 trên [Termux](https://github.com/termux/termux-app) dùng [Box64](https://github.com/ptitSeb/box64) và [Wine](https://www.winehq.org/).
 
 # Cài đặt
-1. Cài
+1. Đầu tiên, bạn cần cài
 [Termux](https://f-droid.org/repo/com.termux_118.apk),
-[Termux-X11](https://raw.githubusercontent.com/olegos2/mobox/main/components/termux-x11.apk) and
+[Termux-X11](https://raw.githubusercontent.com/olegos2/mobox/main/components/termux-x11.apk) và
 [Input Bridge](https://raw.githubusercontent.com/olegos2/mobox/main/components/inputbridge.apk).
 
 2. Mở Termux và dán lệnh dưới
