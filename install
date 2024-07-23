@@ -129,5 +129,5 @@ rm $TEMP_FILE
 
 echo "Cập nhật thành công."
 
-echo "Cài đặt thành công. Để khởi động - nhập \"mobox\".
+echo "Cài đặt thành công. Để khởi động - nhập \"mobox"\ hoặc \"nekobox"\ ".
 
