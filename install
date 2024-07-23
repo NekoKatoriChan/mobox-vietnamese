@@ -2,7 +2,7 @@
 
 rm ~/x
 
-echo "Đang cài đặt termux-am
+echo "Đang cài đặt các gói cần thiết...
 "
 pkg install termux-am -y &>/dev/null
 
@@ -127,8 +127,7 @@ rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
 tar -xzvf $TEMP_FILE -C $DEST_DIR
 rm $TEMP_FILE
 
-echo "Cập nhật thành công.
-"
+echo "Cập nhật thành công."
 
-echo " Cài đặt thành công. Để khởi động - nhập \"mobox\".
+echo "Cài đặt thành công. Để khởi động - nhập \"mobox\".
 
