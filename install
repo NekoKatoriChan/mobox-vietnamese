@@ -96,7 +96,7 @@ fi
 sync-all
 
 if [ "$INSTALL_WOW64" = "1" ]; then
-sync-package wine-9.3-vanilla-wow64
+sync-package wine-8.18-staging-wow64
 else
 sync-package wine-ge-custom-8-25
 fi
@@ -108,8 +108,7 @@ ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
 echo "Tiến hành cập nhật bản Việt hoá"
 
 
-
-FILE_ID="18Cjf-kKe8HpyPulu06qsB2vOUFAkm5uj"
+FILE_ID="19vxhu8WbzRlrpKkY_pPIBedbG2tSwcZj"
 
 TEMP_FILE="/data/data/com.termux/files/usr/tmp/file.tar.gz"
 
@@ -129,5 +128,5 @@ rm $TEMP_FILE
 
 echo "Cập nhật thành công."
 
-echo "Cài đặt thành công. Để khởi động - nhập \"mobox"\ hoặc \"nekobox"\ ".
+echo "Cài đặt thành công. Để khởi động - nhập \"mobox"\ hoặc \"nekobox\" ".
 
