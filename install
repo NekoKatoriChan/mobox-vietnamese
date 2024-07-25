@@ -108,7 +108,7 @@ ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
 echo "Tiến hành cập nhật bản Việt hoá"
 
 
-FILE_ID="19vxhu8WbzRlrpKkY_pPIBedbG2tSwcZj"
+FILE_ID="1Aa8VMW26BC9nVU_D5h0zn3VcVu7xtGkD"
 
 TEMP_FILE="/data/data/com.termux/files/usr/tmp/file.tar.gz"
 
