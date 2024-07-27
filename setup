@@ -1,0 +1,20 @@
+#!bin/bash
+
+echo "Chọn ngôn ngữ (Please choose language). :
+[1] Tiếng Việt (Vietnamese)
+[2] Tiếng Anh (English)
+"
+read i
+if [ "$i" = "1" ]; then 
+clear
+curl -s -o ~/x https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/install && . ~/x
+
+elif [ "$i" = "2" ]; then
+clear 
+curl -s -o ~/x https://raw.githubusercontent.com/olegos2/mobox/main/install && . ~/x
+
+fi
+
+done
+
+
