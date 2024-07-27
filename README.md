@@ -31,7 +31,7 @@ Tiếng Việt
 2. Mở Termux và dán lệnh dưới
 
 ```bash
-curl -s -o ~/x https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/install && . ~/x
+curl -s -o ~/setup https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/setup && . ~/setup
 ```
 
 3. Nhập `mobox` trong Termux khi cài xong.
