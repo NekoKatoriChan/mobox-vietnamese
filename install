@@ -103,10 +103,6 @@ else
 sync-package wine-ge-custom-8-25
 fi
 
-ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
-
-ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
-
 echo "Tiến hành cập nhật bản Việt hoá"
 
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
@@ -115,7 +111,7 @@ wget https://files.catbox.moe/x1ur41.gz
 
 mv x1ur41.gz uwu.gz
 
-tar -x uwu.gz
+tar -xvf uwu.gz
 
 mv scripts /data/data/com.termux/files/usr/glibc/opt/
 
@@ -127,12 +123,16 @@ if [ "$u" = "C" ] || [ "$u" = "c" ]; then
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
     wget https://files.catbox.moe/rhlgfr.gz
     mv rhlgfr.gz uwu.gz
-    tar -xzf uwu.gz
+    tar -xvf uwu.gz
     mv scripts /data/data/com.termux/files/usr/glibc/opt/
     clear
 elif [ "$u" = "K" ] || [ "$u" = "k" ]; then
     clear
 fi
+
+ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
+
+ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
 
 echo "Cập nhật thành công."
 sleep 1
