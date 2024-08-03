@@ -83,6 +83,9 @@ rm -rf $PREFIX/glibc/opt/termux-style
 ```
 * Một số thiết bị có thể gặp sự cố treo tiền tố khi cài đặt PhysX, trong trường hợp này hãy thay đổi cài đặt trong menu `Cài đặt tương thích`.
 * Đối với Snapdragon 845, tắt dri3 trong menu `Cài đặt tương thích thiết bị`
+  
+## Chú ý
+* Phiên bản box86/64 hiện tại không thể tự cấu hình wine được nên Neko khuyến khích cài bản wow64 trước khi script được sửa.
 
 ## Hỗ trợ mobox
 [boosty](https://boosty.to/olegos/donate)
