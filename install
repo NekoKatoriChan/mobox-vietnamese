@@ -115,7 +115,7 @@ wget https://files.catbox.moe/x1ur41.gz
 
 mv x1ur41.gz uwu.gz
 
-tar -xvf uwu.gz
+tar -xvf uwu.gz &>dev/null
 
 mv scripts /data/data/com.termux/files/usr/glibc/opt/
 
