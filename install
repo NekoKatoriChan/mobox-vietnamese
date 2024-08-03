@@ -124,6 +124,7 @@ clear
 echo "Bạn có dùng mobox bản box86/64 không? Điều này khá quan trọng trong việc cấu hình. (C/k)"
 read u
 if [ "$u" = "C" ] || [ "$u" = "c" ]; then
+rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
     wget https://files.catbox.moe/rhlgfr.gz
     mv rhlgfr.gz uwu.gz
     tar -xzf uwu.gz
