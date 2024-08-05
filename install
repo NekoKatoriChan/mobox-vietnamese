@@ -109,12 +109,21 @@ rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
 
 wget https://files.catbox.moe/x1ur41.gz
 
+rm /data/data/com.termux/files/usr/glibc/opt/
+
 mv x1ur41.gz uwu.gz
 
 tar -xvf uwu.gz
 
 mv scripts /data/data/com.termux/files/usr/glibc/opt/
 
+rm uwu.gz
+
+rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
+
+mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
 clear
 
 echo "Bạn có dùng mobox bản box86/64 không? Điều này khá quan trọng trong việc cấu hình. (C/k)"
@@ -125,6 +134,14 @@ rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
     mv rhlgfr.gz uwu.gz
     tar -xvf uwu.gz
     mv scripts /data/data/com.termux/files/usr/glibc/opt/
+rm uwu.gz
+
+rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2 -O mobox_menu
+
+mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+
     clear
 elif [ "$u" = "K" ] || [ "$u" = "k" ]; then
     clear

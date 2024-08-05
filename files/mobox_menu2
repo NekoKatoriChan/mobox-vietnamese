@@ -175,7 +175,9 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
                     tar -xvf uwu.gz
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
                     mv scripts /data/data/com.termux/files/usr/glibc/opt/
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
 rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
                     ;;
     esac
 ;;
