@@ -176,11 +176,12 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
                     clear
                     echo "Lưu ý, khi đổi phiên bản mobox thì toàn bộ dữ liệu wine sẽ được giữ nguyên."
                     sleep 2
-                    wget https://files.catbox.moe/st1qbr.gz -O uwu.gz
-wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2 -O mobox_menu	
+wget https://files.catbox.moe/rhlgfr.gz -O uwu.gz
                     tar -xvf uwu.gz
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
                     mv scripts /data/data/com.termux/files/usr/glibc/opt/
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2
+mv mobox_menu2 mobox
 rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
 mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
                     ;;
