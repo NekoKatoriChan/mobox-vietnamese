@@ -1,0 +1,157 @@
+#!/bin/bash
+
+rm ~/x
+
+echo "Đang cài đặt các gói cần thiết...
+"
+pkg install termux-am -y &>/dev/null
+
+termux-setup-storage & sleep 4 &>/dev/null
+
+while true; do
+    if [ -d ~/storage/shared ]; then
+        break
+    else
+        echo "Quyên truy cập bộ nhớ bị từ chối."
+    fi
+    sleep 3
+done
+
+echo "Đang setup, đợi tí
+"
+apt-get clean
+apt-get update >/dev/null 2>&1
+apt-get -y --with-new-pkgs -o Dpkg::Options::="--force-confdef" upgrade >/dev/null 2>&1
+pkg install x11-repo -y &>/dev/null
+pkg install pulseaudio -y &>/dev/null
+pkg install xwayland -y &>/dev/null
+pkg install wget -y &>/dev/null
+pkg install tsu -y &>/dev/null
+pkg install root-repo -y &>/dev/null
+pkg install patchelf -y &>/dev/null
+pkg install p7zip -y &>/dev/null
+pkg install xorg-xrandr -y &>/dev/null
+pkg install ncurses-utils -y &>/dev/null
+pkg install hashdeep -y &>/dev/null
+pkg install termux-x11-nightly -y &>/dev/null
+
+if [ -e $PREFIX/glibc ]; then
+    echo -n "Gỡ môi trường glibc cũ, tiếp tục chứ ? (C/k) "
+    read i
+    if [ "$i" = "C" ] || [ "$i" = "c" ]; then
+        rm -rf $PREFIX/glibc
+    elif [ "$i" = "K" ] || [ "$i" = "k" ]; then
+        exit 1
+else
+	exit 1
+    fi
+fi
+
+INSTALL_WOW64=0
+
+echo "Vui lòng chọn 1 trong 2 phiên bản mobox
+"
+echo "1) Cài mobox chạy với box86/64
+"
+echo "2) Cài mobox chạy mỗi box64 kèm wow64 (Khuyến nghị)
+"
+echo ""
+echo -n "Chọn 1 trong 2 cái : "
+read i
+case "$i" in
+1)
+    INSTALL_WOW64=0
+;;
+2)
+    INSTALL_WOW64=1
+;;
+*)
+    return 1
+;;
+esac
+
+echo "Đang cài mobox
+"
+
+function wget-git-q {
+    wget -q --retry-connrefused --tries=0 --header "PRIVATE-TOKEN: $PRIVATE_TOKEN" "https://gitlab.com/api/v4/projects/$PROJECT_ID/repository/files/$1/raw?ref=main" -O $2
+    return $?
+}
+
+echo "Cập nhật trình quản lý gói"
+mkdir -p $PREFIX/glibc/opt/package-manager/installed
+
+if [ "$INSTALL_WOW64" = "1" ]; then
+echo "PRIVATE_TOKEN=glpat-h5r7HjKoPKZPxmfg79xs
+PROJECT_ID=54240888">$PREFIX/glibc/opt/package-manager/token
+else
+echo "PRIVATE_TOKEN=glpat-Xs4HfrCkMpbedkPycqzP
+PROJECT_ID=52465323">$PREFIX/glibc/opt/package-manager/token
+fi
+
+. $PREFIX/glibc/opt/package-manager/token
+if ! wget-git-q "package-manager" "$PREFIX/glibc/opt/package-manager/package-manager"; then
+    echo "Download failed"
+    return 1
+fi
+. $PREFIX/glibc/opt/package-manager/package-manager
+sync-all
+
+if [ "$INSTALL_WOW64" = "1" ]; then
+sync-package wine-8.18-staging-wow64
+else
+sync-package wine-ge-custom-8-25
+fi
+
+echo "Tiến hành cập nhật bản Việt hoá"
+
+rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
+
+wget https://files.catbox.moe/x1ur41.gz
+
+rm /data/data/com.termux/files/usr/glibc/opt/
+
+mv x1ur41.gz uwu.gz
+
+tar -xvf uwu.gz
+
+mv scripts /data/data/com.termux/files/usr/glibc/opt/
+
+rm uwu.gz
+
+rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
+
+mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+clear
+
+echo "Bạn có dùng mobox bản box86/64 không? Điều này khá quan trọng trong việc cấu hình. (C/k)"
+read u
+if [ "$u" = "C" ] || [ "$u" = "c" ]; then
+rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
+  wget https://files.catbox.moe/rhlgfr.gz -O uwu.gz 
+    tar -xvf uwu.gz
+    mv scripts /data/data/com.termux/files/usr/glibc/opt/
+rm uwu.gz
+
+rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2 -O mobox_menu
+
+mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+
+    clear
+elif [ "$u" = "K" ] || [ "$u" = "k" ]; then
+    clear
+fi
+
+ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
+
+ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
+
+echo "Cập nhật thành công."
+sleep 1
+clear
+echo 'Cài đặt thành công. Để khởi động - nhập "mobox" hoặc "nekobox"'
+sleep 2
