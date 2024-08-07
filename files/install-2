@@ -148,6 +148,7 @@ ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
 
 mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
 mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
+mv /data/data/com.termux/files/usr/glibc2 /data/data/com.termux/files/usr/glibc3
 echo "Cập nhật thành công."
 sleep 1
 clear

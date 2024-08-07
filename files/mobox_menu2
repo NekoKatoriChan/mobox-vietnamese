@@ -175,10 +175,12 @@ mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
 mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
 mv /data/data/com.termux/files/usr/glibc2 /data/data/com.termux/files/usr/glibc3
 
-ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
-ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox        
+ln -sf data/data/com.termux/usr/glibc/opt/scripts/mobox data/data/com.termux/usr/bin/nekobox
+ln -sf data/data/com.termux/usr/glibc/opt/scripts/mobox data/data/com.termux/usr/bin/mobox
+
 clear
 echo "Thay đổi thành công, vui lòng khởi động lại mobox."
+sleep 2
                     ;;
     esac
 ;;
