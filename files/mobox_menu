@@ -180,6 +180,9 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
 mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
 mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
 mv /data/data/com.termux/files/usr/glibc2 /data/data/com.termux/files/usr/glibc3
+
+ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
+ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
 clear
 echo "Vui lòng khởi động lại mobox."
 
