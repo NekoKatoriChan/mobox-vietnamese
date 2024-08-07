@@ -4,10 +4,6 @@ rm ~/x
 
 echo "Đang cài đặt các gói cần thiết...
 "
-pkg install termux-am -y &>/dev/null
-
-termux-setup-storage & sleep 4 &>/dev/null
-
 while true; do
     if [ -d ~/storage/shared ]; then
         break
@@ -150,6 +146,8 @@ ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
 
 ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
 
+mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
+mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
 echo "Cập nhật thành công."
 sleep 1
 clear

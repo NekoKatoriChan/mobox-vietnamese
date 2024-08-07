@@ -161,7 +161,7 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
 
         7)
             dialog_menu "Đổi phiên bản mobox" "" \
-            "1" "Đổi về bản box64+wow64"
+            "1" "Đổi về bản box64+wow64 (Chỉ hoạt động khi đã cài 2 bản mobox)"
             ret2=$?
             if [ $ret2 -eq 255 ]; then
                 continue
@@ -171,13 +171,11 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
                     clear
                     echo "Lưu ý, khi đổi phiên bản mobox thì toàn bộ dữ liệu wine sẽ được giữ nguyên. "
                     sleep 2
-                    wget https://files.catbox.moe/rhlgfr.gz -O uwu.gz
-                    tar -xvf uwu.gz
-rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
-                    mv scripts /data/data/com.termux/files/usr/glibc/opt/
-wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
-rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
-mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
+mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
+mv /data/data/com.termux/files/usr/glibc2 /data/data/com.termux/files/usr/glibc3
+clear
+echo "Thay đổi thành công, vui lòng khởi động lại mobox."
                     ;;
     esac
 ;;
