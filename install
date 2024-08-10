@@ -106,12 +106,7 @@ echo "Tiến hành cập nhật bản Việt hoá"
 
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
 
-wget https://files.catbox.moe/rjqf37.gz
-
-rm /data/data/com.termux/files/usr/glibc/opt/
-
-mv x1ur41.gz uwu.gz
-
+wget https://files.catbox.moe/rjqf37.gz -O uwu.gz
 tar -xvf uwu.gz
 
 mv scripts /data/data/com.termux/files/usr/glibc/opt/
