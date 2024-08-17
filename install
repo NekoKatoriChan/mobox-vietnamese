@@ -153,7 +153,7 @@ clear
 echo "Khoan đã...."
 sleep 2
 clear
-echo "Bạn có muốn cài thêm phiên bản khác của mobox không ? (Quá trình này cần ít nhất 3GB để cài) (C/k) :
+echo "Bạn có muốn cài thêm phiên bản khác của mobox không ? (Quá trình này cần ít nhất 3GB để cài) (C/k) :"
 read u
 if [ "$u" = "C" ] || [ "$u" = "c" ]; then
 mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc3
