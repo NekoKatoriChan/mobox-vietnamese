@@ -9,7 +9,7 @@ mkdir -p "$PREFIX/glibc/opt/notice"
 if [ ! -e "$PREFIX/glibc/opt/notice/notice1_shown" ]; then
     touch "$PREFIX/glibc/opt/notice/notice1_shown"
     dialog_msgbox "Thông báo từ Olegos2" \
-    "2 tháng năm\nAll Mobox Edge related posts (until now) were not signed off by me. All the information in these posts is not official and is not verified. Mobox >"
+    "Chào mừng bạn đã đến với mobox, mobox phiên bản này chỉ Việt hoá và thêm 1 số tính năng nho nhỏ. Tuy nhiên, hiệu năng sẽ không thay đổi so với mobox bản gốc."
 fi
 ##
 
@@ -21,14 +21,15 @@ while true; do
         sudo chmod 1777 /dev/shm &>/dev/null
     fi
 
-    dialog_menu "Mobox (Được Việt hóa bởi Neko)" "" \
+    dialog_menu "Mobox (Bản wow64)" "" \
     "1" "Chạy Wine" \
     "2" "Cài đặt" \
     "3" "Quản lý gói" \
     "4" "Chọn container wine hiện tại" \
     "5" "Đổi bản dựng box64" \
     "6" "Có gì mới ?" \
-    "7" "Đổi phiên bản mobox"
+    "7" "Setup nhỏ trước khi dùng mobox" \
+    "8" "Đổi phiên bản mobox"
     ret=$?
     if [ $ret -eq 255 ]; then
         break
@@ -154,14 +155,19 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
                     ;;
             esac
             ;;
-        6)
-            dialog_msgbox "Có gì mới ?" "\Z33 tháng ba\Zn
-Đã thêm tính năng đổi phiên bản mobox mà không cần gỡ cài đặt nó. "
-            ;;
 
+
+
+6)
+            dialog_msgbox "Có gì mới?" "\Z34 tháng tám\Zn\nĐã thêm tính năng thay đổi phiên bản mobox mà không cần phải cài lại mobox."
+            ;;
         7)
+            dialog_msgbox "Setup nho nhỏ" "Bạn nên đổi thành wine 8.18 staging qua lựa chọn 4 trước khi dùng mobox."
+            ;;
+        8)
             dialog_menu "Đổi phiên bản mobox" "" \
-            "1" "Đổi về bản box64+wow64 (Chỉ hoạt động khi đã cài 2 bản mobox)"
+            "1" "Đổi qua box86/64
+ (Chỉ hoạt động khi đã cài toàn bộ phiên bản mobox)"
             ret2=$?
             if [ $ret2 -eq 255 ]; then
                 continue
@@ -169,7 +175,7 @@ export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.co
             case $ret2 in
                 1)
                     clear
-                    echo "Lưu ý, khi đổi phiên bản mobox thì toàn bộ dữ liệu wine sẽ được giữ nguyên. "
+                    echo "Lưu ý, khi đổi phiên bản mobox thì toàn bộ dữ liệu wine sẽ được giữ nguyên."
                     sleep 2
 mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
 mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
@@ -177,14 +183,14 @@ mv /data/data/com.termux/files/usr/glibc2 /data/data/com.termux/files/usr/glibc3
 
 ln -sf data/data/com.termux/usr/glibc/opt/scripts/mobox data/data/com.termux/usr/bin/nekobox
 ln -sf data/data/com.termux/usr/glibc/opt/scripts/mobox data/data/com.termux/usr/bin/mobox
-
 clear
-echo "Thay đổi thành công, vui lòng khởi động lại mobox."
+echo "Vui lòng khởi động lại mobox."
 sleep 2
                     ;;
+            esac
+            ;;
     esac
-;;
-esac
 done
 
 restore-termux-style
+
