@@ -84,10 +84,10 @@ rm -rf $PREFIX/glibc/opt/termux-style
 * Một số thiết bị có thể gặp sự cố treo tiền tố khi cài đặt PhysX, trong trường hợp này hãy thay đổi cài đặt trong menu `Cài đặt tương thích`.
 * Đối với Snapdragon 845, tắt dri3 trong menu `Cài đặt tương thích thiết bị`
 
-# Chú ý
-* Hiện tại tính năng thay đổi phiên bản mobox chưa được hoàn chỉnh, nếu như muốn thay đổi phiên bản thì phải cài lại mobox.
+# Tính năng nhỏ
+* Đã thêm tính năng thay đổi phiên bản mobox nhưng vẫn giữ nguyên dữ liệu.
 
-* Bộ nhớ tối thiểu để cài : khoảng 3GB
+* Chú ý : Để sử dụng được tính năng này, bạn buộc phải cài 2 phiên bản mobox khác nhau trong quá trình cài đặt lần đầu.
 
 
 ## Hỗ trợ mobox
