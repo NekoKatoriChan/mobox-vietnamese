@@ -103,4 +103,3 @@ sleep 1
 clear
 echo 'Cài đặt thành công. Để khởi động - nhập "mobox" hoặc "nekobox"'
 sleep 2
-i
