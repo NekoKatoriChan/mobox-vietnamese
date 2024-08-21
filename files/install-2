@@ -2,38 +2,9 @@
 
 rm ~/x
 
-echo "Đang cài đặt các gói cần thiết...
-"
-pkg install termux-am -y &>/dev/null
-
-
-while true; do
-    if [ -d ~/storage/shared ]; then
-        break
-    else
-        echo "Quyên truy cập bộ nhớ bị từ chối."
-    fi
-    sleep 3
-done
-
-echo "Đang setup, đợi tí
-"
-apt-get clean
-apt-get update >/dev/null 2>&1
-apt-get -y --with-new-pkgs -o Dpkg::Options::="--force-confdef" upgrade >/dev/null 2>&1
-pkg install x11-repo -y &>/dev/null
-pkg install pulseaudio -y &>/dev/null
-pkg install xwayland -y &>/dev/null
-pkg install wget -y &>/dev/null
-pkg install tsu -y &>/dev/null
-pkg install root-repo -y &>/dev/null
-pkg install patchelf -y &>/dev/null
-pkg install p7zip -y &>/dev/null
-pkg install xorg-xrandr -y &>/dev/null
-pkg install ncurses-utils -y &>/dev/null
-pkg install hashdeep -y &>/dev/null
-pkg install termux-x11-nightly -y &>/dev/null
-
+echo "Tiến hành cài đặt mobox bản khác..."
+sleep 2
+clear
 if [ -e $PREFIX/glibc ]; then
     echo -n "Gỡ môi trường glibc cũ, tiếp tục chứ ? (C/k) "
     read i
