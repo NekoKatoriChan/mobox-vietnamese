@@ -8,7 +8,7 @@ source "$PREFIX/glibc/opt/scripts/configs"
 mkdir -p "$PREFIX/glibc/opt/notice"
 if [ ! -e "$PREFIX/glibc/opt/notice/notice1_shown" ]; then
     touch "$PREFIX/glibc/opt/notice/notice1_shown"
-    dialog_msgbox "Thông báo từ Neko" \
+    dialog_msgbox "Thông báo từ Olegos2" \
     "Chào mừng bạn đã đến với mobox, mobox phiên bản này chỉ Việt hoá và thêm 1 số tính năng nho nhỏ. Tuy nhiên, hiệu năng sẽ không thay đổi so với mobox bản gốc."
 fi
 ##

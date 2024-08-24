@@ -2,22 +2,9 @@
 
 rm ~/x
 
-echo "Đang cài đặt các gói cần thiết...
-"
-pkg install termux-am -y &>/dev/null
-
-
-while true; do
-    if [ -d ~/storage/shared ]; then
-        break
-    else
-        echo "Quyên truy cập bộ nhớ bị từ chối."
-    fi
-    sleep 3
-done
-
 echo "Đang setup, đợi tí
 "
+pkg install termux-am -y &>/dev/null
 apt-get clean
 apt-get update >/dev/null 2>&1
 apt-get -y --with-new-pkgs -o Dpkg::Options::="--force-confdef" upgrade >/dev/null 2>&1
@@ -33,6 +20,23 @@ pkg install xorg-xrandr -y &>/dev/null
 pkg install ncurses-utils -y &>/dev/null
 pkg install hashdeep -y &>/dev/null
 pkg install termux-x11-nightly -y &>/dev/null
+
+while true; do
+    if [ -d ~/storage/shared ]; then
+        break
+    else
+        echo "Quyên truy cập bộ nhớ bị từ chối."
+    fi
+    sleep 3
+done
+
+echo "Bạn có muốn cài 2 phiên bản mobox không ? (Quá trình này cần ít nhất 3GB để cài) (C/k)"
+read u
+if [ "$u" = "C" ] || [ "$u" = "c" ]; then
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/install-2 -O x2
+elif [ "$u" = "K" ] || [ "$u" = "k" ]; then
+clear
+fi
 
 if [ -e $PREFIX/glibc ]; then
     echo -n "Gỡ môi trường glibc cũ, tiếp tục chứ ? (C/k) "
@@ -90,7 +94,7 @@ fi
 
 . $PREFIX/glibc/opt/package-manager/token
 if ! wget-git-q "package-manager" "$PREFIX/glibc/opt/package-manager/package-manager"; then
-    echo "Download failed"
+    echo "Tải xuống thất bại"
     return 1
 fi
 . $PREFIX/glibc/opt/package-manager/package-manager
@@ -123,27 +127,15 @@ ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/mobox
 
 ln -sf $PREFIX/glibc/opt/scripts/mobox $PREFIX/bin/nekobox
 
+sleep 1
+clear
+if [ "$u" = "C" ] || [ "$u" = "c" ]; then
+mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc3
+bash x2
+else
 echo "Cập nhật thành công."
 sleep 1
 clear
-echo 'Cài đặt thành công. Để khởi động - nhập "mobox" hoặc "nekobox"'
-sleep 2
-clear
-echo "Khoan đã...."
-sleep 2
-clear
-echo "Bạn có muốn cài thêm phiên bản khác của mobox không ? (Quá trình này cần ít nhất 3GB để cài) (C/k)"
-read u
-if [ "$u" = "C" ] || [ "$u" = "c" ]; then
-mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc3
-wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/install-2 -O x
-bash x
-elif [ "$u" = "K" ] || [ "$u" = "k" ]; then
-clear
-sleep 2
-echo "Cập nhật lần 2 thành công."
-sleep 2
-clear
-echo 'Để khởi động - nhập "mobox" hoặc "nekobox"'
-sleep 1
+echo 'Để mở mobox, nhập "mobox" hoặc "nekobox".'
+sleep 3
 fi
