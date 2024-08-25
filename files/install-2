@@ -61,8 +61,8 @@ wget https://files.catbox.moe/mtci1s.gz -O uwu.gz
 tar -xvf uwu.gz
 mv scripts /data/data/com.termux/files/usr/glibc/opt/
 rm uwu.gz
-rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu2 -O mobox_menu
-wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
+rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2 -O mobox_menu
 mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
 else
 sync-package wine-ge-custom-8-25
