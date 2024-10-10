@@ -103,7 +103,7 @@ sync-all
 if [ "$INSTALL_WOW64" = "1" ]; then
 sync-package wine-8.18-staging-wow64
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
-wget https://files.catbox.moe/mtci1s.gz -O uwu.gz
+wget https://files.catbox.moe/l0sa5q.gz -O uwu.gz
 tar -xvf uwu.gz
 mv scripts /data/data/com.termux/files/usr/glibc/opt/
 rm uwu.gz
