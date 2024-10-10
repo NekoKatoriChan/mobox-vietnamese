@@ -103,19 +103,19 @@ sync-all
 if [ "$INSTALL_WOW64" = "1" ]; then
 sync-package wine-8.18-staging-wow64
 rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
-wget https://files.catbox.moe/l0sa5q.gz -O uwu.gz
+wget https://files.catbox.moe/28w7u1.gz -O uwu.gz
 tar -xvf uwu.gz
-mv scripts /data/data/com.termux/files/usr/glibc/opt/
+mv scripts $PREFIX/glibc/opt/
 rm uwu.gz
-rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
+rm $PREFIX/glibc/opt/scripts/mobox_menu
 wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2 -O mobox_menu
-mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+mv mobox_menu $PREFIX/glibc/opt/scripts/
 else
 sync-package wine-ge-custom-8-25
-rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
+rm -rf $PREFIX/glibc/opt/scripts
 wget https://files.catbox.moe/yc6nbu.gz -O uwu.gz
 tar -xvf uwu.gz
-mv scripts /data/data/com.termux/files/usr/glibc/opt/
+mv scripts $PREFIX/glibc/opt/
 rm uwu.gz
 rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
 wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
