@@ -113,7 +113,7 @@ mv mobox_menu $PREFIX/glibc/opt/scripts/
 else
 sync-package wine-ge-custom-8-25
 rm -rf $PREFIX/glibc/opt/scripts
-wget https://files.catbox.moe/w2p0qc.gz -O uwu.gz
+wget https://files.catbox.moe/tftvw8.gz -O uwu.gz
 tar -xvf uwu.gz
 mv scripts $PREFIX/glibc/opt/
 rm uwu.gz
