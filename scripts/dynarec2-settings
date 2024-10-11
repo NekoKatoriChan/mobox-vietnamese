@@ -1,0 +1,123 @@
+#!/bin/bash
+
+while true; do
+load_configs
+echo -e "\033[1;4;97mCài đặt Dynarec\033[0m
+
+Nhập số cài đặt trước bạn đã chọn. Nếu bạn muốn bật riêng một số tùy chọn tương thích, hãy thêm các số đó sau số đặt trước đã chọn.
+
+Ví dụ, nếu bạn muốn mẫu có thêm hiệu năng với  \033[1;33mFASTNAN\033[1;32m=\033[1;34m0\033[0m - nhập \033[1;32m41\033[0m.
+Nếu bạn cần mẫu tạo thêm hiệu năng với  \033[1;33mFASTNAN\033[1;32m=\033[1;34m0\033[0m and \033[1;33mX87DOUBLE\033[1;32m=\033[1;34m1\033[0m - nhập \033[1;32m412\033[0m.
+
+\033[1;97mCài đặt hiện tại:\033[0m
+ \033[1;33mDYNAREC_BIGBLOCK\033[1;32m=\033[1;34m$BOX64_DYNAREC_BIGBLOCK\033[0m
+ \033[1;33mDYNAREC_X87DOUBLE\033[1;32m=\033[1;34m$BOX64_DYNAREC_X87DOUBLE\033[0m
+ \033[1;33mDYNAREC_FASTNAN\033[1;32m=\033[1;34m$BOX64_DYNAREC_FASTNAN\033[0m
+ \033[1;33mDYNAREC_FASTROUND\033[1;32m=\033[1;34m$BOX64_DYNAREC_FASTROUND\033[0m
+ \033[1;33mDYNAREC_SAFEFLAGS\033[1;32m=\033[1;34m$BOX64_DYNAREC_SAFEFLAGS\033[0m
+ \033[1;33mDYNAREC_STRONGMEM\033[1;32m=\033[1;34m$BOX64_DYNAREC_STRONGMEM\033[0m
+ \033[1;33mDYNAREC_CALLRET\033[1;32m=\033[1;34m$BOX64_DYNAREC_CALLRET\033[0m
+ \033[1;33mIGNOREINT3\033[1;32m=\033[1;34m$BOX64_IGNOREINT3\033[0m
+
+\033[1;33mCấu hình hiện tại: \033[1;32m$DYNAREC_CURRENT_PRESET\033[0m
+\033[1;97mDanh sách cài đặt trước:\033[0m
+\033[1;32m1\033[0m* khả năng tương thích tối đa (hiệu năng hơi khoai)
+\033[1;32m2\033[0m* mặc định với tương thích
+\033[1;32m3\033[0m* mặc định (SAFEFLAGS=1)
+\033[1;32m4\033[0m* tăng hiệu năng (SAFEFLAGS=0)
+
+\033[1;97mDanh sách các cờ tương thích cài sẵn bổ sung:\033[0m
+*\033[1;32m1\033[0m* \033[1;33mFASTNAN\033[1;32m=\033[1;34m0\033[0m
+*\033[1;32m2\033[0m* \033[1;33mX87DOUBLE\033[1;32m=\033[1;34m1\033[0m
+*\033[1;32m3\033[0m* \033[1;33mSTRONGMEM\033[1;32m=\033[1;34m1\033[0m
+*\033[1;32m4\033[0m* \033[1;33mSAFEFLAGS\033[1;32m=\033[1;34m2\033[0m
+*\033[1;32m5\033[0m* \033[1;33mCALLRET\033[1;32m=\033[1;34m1\033[0m - tăng thêm hiệu năng
+*\033[1;32m6\033[0m* \033[1;33mFASTROUND\033[1;32m=\033[1;34m0\033[0m
+*\033[1;32m7\033[0m* \033[1;33mSTRONGMEM\033[1;32m=\033[1;34m3\033[0m
+*\033[1;32m8\033[0m* \033[1;33mBIGBLOCK\033[1;32m=\033[1;34m0\033[0m - sửa đơ game ở 1 số game
+*\033[1;32m9\033[0m* \033[1;33mIGNOREINT3\033[1;32m=\033[1;34m1\033[0m - tắt cờ này
+
+"
+echo "Nhập số cài đặt trước của bạn"
+echo -e "\033[1;33mNếu bạn muốn tự cấu hình Dynarec - nhập \033[1;32m0\033[1;0m"
+echo -e "  Để trở về - nhập enter\033[1;32m"
+read i
+echo -e "\033[0m"
+
+j=${i:0:1}
+case $j in
+0)
+	echo "export DYNAREC_SETTINGS_SCRIPT=1">$PREFIX/glibc/opt/conf/dynarec_preset.conf
+	break
+;;
+1)
+	echo "export BOX64_DYNAREC_BIGBLOCK=0">$PREFIX/glibc/opt/conf/dynarec/bigblock.conf
+	echo "unset BOX64_DYNAREC_ALIGNED_ATOMICS">$PREFIX/glibc/opt/conf/dynarec/aligned_atomics.conf
+	echo "export BOX64_DYNAREC_X87DOUBLE=1">$PREFIX/glibc/opt/conf/dynarec/x87double.conf
+	echo "export BOX64_DYNAREC_FASTNAN=0">$PREFIX/glibc/opt/conf/dynarec/fastnan.conf
+	echo "export BOX64_DYNAREC_FASTROUND=0">$PREFIX/glibc/opt/conf/dynarec/fastround.conf
+	echo "export BOX64_DYNAREC_SAFEFLAGS=2">$PREFIX/glibc/opt/conf/dynarec/safeflags.conf
+	echo "export BOX64_DYNAREC_STRONGMEM=3">$PREFIX/glibc/opt/conf/dynarec/strongmem.conf
+	echo "export BOX64_DYNAREC_WAIT=1">$PREFIX/glibc/opt/conf/dynarec/wait.conf
+	echo "export BOX64_DYNAREC_CALLRET=0">$PREFIX/glibc/opt/conf/dynarec/callret.conf
+	echo "unset BOX64_IGNOREINT3">$PREFIX/glibc/opt/conf/dynarec/ignoreint3.conf
+;;
+2)
+	echo "export BOX64_DYNAREC_BIGBLOCK=2">$PREFIX/glibc/opt/conf/dynarec/bigblock.conf
+	echo "unset BOX64_DYNAREC_ALIGNED_ATOMICS">$PREFIX/glibc/opt/conf/dynarec/aligned_atomics.conf
+	echo "unset BOX64_DYNAREC_X87DOUBLE">$PREFIX/glibc/opt/conf/dynarec/x87double.conf
+	echo "export BOX64_DYNAREC_FASTNAN=0">$PREFIX/glibc/opt/conf/dynarec/fastnan.conf
+	echo "unset BOX64_DYNAREC_FASTROUND">$PREFIX/glibc/opt/conf/dynarec/fastround.conf
+	echo "export BOX64_DYNAREC_SAFEFLAGS=2">$PREFIX/glibc/opt/conf/dynarec/safeflags.conf
+	echo "export BOX64_DYNAREC_STRONGMEM=2">$PREFIX/glibc/opt/conf/dynarec/strongmem.conf
+	echo "unset BOX64_DYNAREC_WAIT">$PREFIX/glibc/opt/conf/dynarec/wait.conf
+	echo "export BOX64_DYNAREC_CALLRET=0">$PREFIX/glibc/opt/conf/dynarec/callret.conf
+	echo "unset BOX64_IGNOREINT3">$PREFIX/glibc/opt/conf/dynarec/ignoreint3.conf
+;;
+3)
+	echo "export BOX64_DYNAREC_BIGBLOCK=2">$PREFIX/glibc/opt/conf/dynarec/bigblock.conf
+	echo "unset BOX64_DYNAREC_ALIGNED_ATOMICS">$PREFIX/glibc/opt/conf/dynarec/aligned_atomics.conf
+	echo "unset BOX64_DYNAREC_X87DOUBLE">$PREFIX/glibc/opt/conf/dynarec/x87double.conf
+	echo "unset BOX64_DYNAREC_FASTNAN">$PREFIX/glibc/opt/conf/dynarec/fastnan.conf
+	echo "unset BOX64_DYNAREC_FASTROUND">$PREFIX/glibc/opt/conf/dynarec/fastround.conf
+	echo "unset BOX64_DYNAREC_SAFEFLAGS">$PREFIX/glibc/opt/conf/dynarec/safeflags.conf
+	echo "unset BOX64_DYNAREC_STRONGMEM">$PREFIX/glibc/opt/conf/dynarec/strongmem.conf
+	echo "unset BOX64_DYNAREC_WAIT">$PREFIX/glibc/opt/conf/dynarec/wait.conf
+	echo "export BOX64_DYNAREC_CALLRET=0">$PREFIX/glibc/opt/conf/dynarec/callret.conf
+	echo "unset BOX64_IGNOREINT3">$PREFIX/glibc/opt/conf/dynarec/ignoreint3.conf
+;;
+4)
+	echo "export BOX64_DYNAREC_BIGBLOCK=2">$PREFIX/glibc/opt/conf/dynarec/bigblock.conf
+	echo "unset BOX64_DYNAREC_ALIGNED_ATOMICS">$PREFIX/glibc/opt/conf/dynarec/aligned_atomics.conf
+	echo "unset BOX64_DYNAREC_X87DOUBLE">$PREFIX/glibc/opt/conf/dynarec/x87double.conf
+	echo "unset BOX64_DYNAREC_FASTNAN">$PREFIX/glibc/opt/conf/dynarec/fastnan.conf
+	echo "unset BOX64_DYNAREC_FASTROUND">$PREFIX/glibc/opt/conf/dynarec/fastround.conf
+	echo "export BOX64_DYNAREC_SAFEFLAGS=0">$PREFIX/glibc/opt/conf/dynarec/safeflags.conf
+	echo "unset BOX64_DYNAREC_STRONGMEM">$PREFIX/glibc/opt/conf/dynarec/strongmem.conf
+	echo "unset BOX64_DYNAREC_WAIT">$PREFIX/glibc/opt/conf/dynarec/wait.conf
+	echo "export BOX64_DYNAREC_CALLRET=0">$PREFIX/glibc/opt/conf/dynarec/callret.conf
+	echo "unset BOX64_IGNOREINT3">$PREFIX/glibc/opt/conf/dynarec/ignoreint3.conf
+;;
+*)
+	break
+;;
+esac
+
+for (( j=1; j<${#i}; j++ )); do
+	case ${i:$j:1} in
+	1) echo "export BOX64_DYNAREC_FASTNAN=0">$PREFIX/glibc/opt/conf/dynarec/fastnan.conf ;;
+	2) echo "export BOX64_DYNAREC_X87DOUBLE=1">$PREFIX/glibc/opt/conf/dynarec/x87double.conf ;;
+	3) echo "export BOX64_DYNAREC_STRONGMEM=1">$PREFIX/glibc/opt/conf/dynarec/strongmem.conf ;;
+	4) echo "export BOX64_DYNAREC_SAFEFLAGS=2">$PREFIX/glibc/opt/conf/dynarec/safeflags.conf ;;
+	5) echo "export BOX64_DYNAREC_CALLRET=1">$PREFIX/glibc/opt/conf/dynarec/callret.conf ;;
+	6) echo "export BOX64_DYNAREC_FASTROUND=0">$PREFIX/glibc/opt/conf/dynarec/fastround.conf ;;
+	7) echo "export BOX64_DYNAREC_STRONGMEM=3">$PREFIX/glibc/opt/conf/dynarec/strongmem.conf ;;
+	8) echo "export BOX64_DYNAREC_BIGBLOCK=0">$PREFIX/glibc/opt/conf/dynarec/bigblock.conf ;;
+	9) echo "export BOX64_IGNOREINT3=1">$PREFIX/glibc/opt/conf/dynarec/ignoreint3.conf ;;
+	esac
+done
+
+echo "export DYNAREC_SETTINGS_SCRIPT=2
+export DYNAREC_CURRENT_PRESET=$i">$PREFIX/glibc/opt/conf/dynarec_preset.conf
+
+done

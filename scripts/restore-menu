@@ -1,0 +1,34 @@
+#!/bin/bash
+
+defitem=1
+
+while true; do
+dialog_menu_item $defitem "Sao lưu và khôi phục" "" \
+"1" "Chỉnh về cấu hình mặc định" \
+"2" "Gỡ cài đặt mobox"
+defitem=$?
+case $defitem in
+1)
+	dialog_yesno "Bạn chắc chứ ?"
+	if [ "$?" = "0" ]; then
+		rm -rf $PREFIX/glibc/opt/conf
+		cp -r $PREFIX/glibc/opt/default-conf/* $PREFIX/glibc/opt
+	fi
+;;
+2)
+	dialog_yesno "Bạn chắc chứ ??"
+	if [ "$?" = "0" ]; then
+		restore-termux-style
+		tput cnorm
+rm -rf /data/data/com.termux/files/usr/glibc
+rm -rf /data/data/com.termux/files/usr/glibc3
+                rm -rf /data/data/com.termux/files/usr/bin/mobox
+		exit
+	fi
+;;
+255)
+	break
+;;
+esac
+
+done

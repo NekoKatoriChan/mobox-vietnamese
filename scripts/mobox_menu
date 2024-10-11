@@ -1,0 +1,196 @@
+#!/bin/bash
+
+source "$PREFIX/glibc/opt/termux-style/termux-style"
+source "$PREFIX/glibc/opt/scripts/dialogs"
+source "$PREFIX/glibc/opt/scripts/configs"
+
+## TODO: Remove this
+mkdir -p "$PREFIX/glibc/opt/notice"
+if [ ! -e "$PREFIX/glibc/opt/notice/notice1_shown" ]; then
+    touch "$PREFIX/glibc/opt/notice/notice1_shown"
+    dialog_msgbox "Thông báo từ Neko" \
+    "Chào mừng bạn đã đến với mobox, mobox phiên bản này chỉ Việt hoá và thêm 1 số tính năng nho nhỏ. Tuy nhiên, hiệu năng sẽ không thay đổi so với mobox bản gốc."
+fi
+##
+
+while true; do
+    load_configs
+    if [ "$WINEESYNC" = "1" ] && [ "$WINEESYNC_TERMUX" = "0" ]; then
+        su -c setenforce 0 &>/dev/null
+        sudo mkdir -p /dev/shm &>/dev/null
+        sudo chmod 1777 /dev/shm &>/dev/null
+    fi
+
+    dialog_menu "Mobox (Bản wow64)" "" \
+    "1" "Chạy Wine" \
+    "2" "Cài đặt" \
+    "3" "Quản lý gói" \
+    "4" "Chọn container wine hiện tại" \
+    "5" "Đổi bản dựng box64" \
+    "6" "Có gì mới ?" \
+    "7" "Setup nhỏ trước khi dùng mobox" \
+    "8" "Đổi phiên bản mobox"
+    ret=$?
+    if [ $ret -eq 255 ]; then
+        break
+    fi
+
+    case $ret in
+        1)
+            if [ -n "$WINE_PATH" ] && [ -e "$WINE_PATH" ]; then
+                chmod 777 "$PREFIX/glibc/opt/scripts/start-tfm"
+                "$PREFIX/glibc/opt/scripts/start-tfm"
+            else
+                echo "Wine hiện tại của bạn ($(basename "$WINE_PATH")) hiện chưa được cài đặt"
+                sleep 3
+            fi
+            ;;
+        2)
+            source "$PREFIX/glibc/opt/scripts/settings"
+            ;;
+        3)
+            load_package-manager
+            if [ $? -ne 0 ]; then
+                continue
+            fi
+            defitem_settings=1
+
+            while true; do
+                load_configs
+                dialog_menu_item "$defitem_settings" "Quản lý gói" "" \
+                "1" "Kiểm tra ổn định của file hệ thống" \
+                "2" "Cài wine" \
+                "3" "Gỡ cài đặt wine"
+                defitem_settings=$?
+                if [ $defitem_settings -eq 255 ]; then
+                    break
+                fi
+                case $defitem_settings in
+                    1)
+                        validate-all
+                        sleep 2
+                        ;;
+                    2)
+                        echo -e "\n\033[1;97mPhiên bản wine hiện tại:\033[0m $(basename "$WINE_PATH")"
+                        echo -e "\n\033[1;97mCó thể cài được:\033[0m"
+
+                        j=1
+                        a=()
+                        for i in "${wine_packages[@]}"; do
+                            if [ ! -e "$PREFIX/glibc/$i" ]; then
+                                echo -e "\033[1;32m$j\033[0m) $i"
+                                j=$((j + 1))
+                                a+=("$i")
+                            fi
+                        done
+                        echo -en "\n\033[1;97mSố đã chọn:\033[0m \033[1;33m"
+                        read -r i
+                        echo -e "\033[0m"
+                        if [[ $i =~ ^[0-9]+$ ]] && (( 1 <= i )) && (( i <= ${#a[@]} )); then
+                            i=${a[$i - 1]}
+                            sync-package "$i"
+                        fi
+                        ;;
+                    3)
+                        echo -e "\n\033[1;97mPhiên bản wine hiện tại:\033[0m $(basename "$WINE_PATH")"
+                        echo -e "\n\033[1;97mCó thể gỡ cài đặt được:\033[0m"
+
+                        j=1
+                        a=()
+                        for i in "${wine_packages[@]}"; do
+                            if [ -e "$PREFIX/glibc/$i" ]; then
+                                echo -e "\033[1;32m$j\033[0m) $i"
+                                j=$((j + 1))
+                                a+=("$i")
+                            fi
+                        done
+                        echo -en "\n\033[1;97mSố đã chọn:\033[0m \033[1;33m"
+                        read -r i
+                        echo -e "\033[0m"
+                        if [[ $i =~ ^[0-9]+$ ]] && (( 1 <= i )) && (( i <= ${#a[@]} )); then
+                            i=${a[$i - 1]}
+                            remove-package "$i"
+                        fi
+                        ;;
+                esac
+            done
+            ;;
+        4)
+            echo -e "\n\033[1;97mPhiên bản wine hiện tại:\033[0m $(basename "$WINE_PATH")"
+            echo -e "\n\033[1;97mĐã cài đặt:\033[0m"
+
+            j=1
+            a=()
+            for i in "${wine_packages[@]}"; do
+                if [ -e "$PREFIX/glibc/$i" ]; then
+                    echo -e "\033[1;32m$j\033[0m) $i"
+                    j=$((j + 1))
+                    a+=("$i")
+                fi
+            done
+            echo -en "\n\033[1;97mSố đã chọn:\033[0m \033[1;33m"
+            read -r i
+            echo -e "\033[0m"
+            if [[ $i =~ ^[0-9]+$ ]] && (( 1 <= i )) && (( i <= ${#a[@]} )); then
+                i=${a[$i - 1]}
+                echo "export WINE_PATH=\$PREFIX/glibc/$i
+export WINEPREFIX=\$PREFIX/glibc/$i/.wine" >"$PREFIX/glibc/opt/conf/wine_path.conf"
+            fi
+            sleep 1
+            ;;
+        5)
+            dialog_menu "Chọn bản dựng box64" "" \
+            "1" "Bản dựng ngày 3 tháng ba" \
+            "2" "Bản dựng ngày 14 tháng hai"
+            ret=$?
+            if [ $ret -eq 255 ]; then
+                continue
+            fi
+            case $ret in
+                1)
+                    tar -xf "$PREFIX/glibc/opt/box/mar3.tar.xz" -C "$PREFIX/glibc/bin"
+                    ;;
+                2)
+                    tar -xf "$PREFIX/glibc/opt/box/feb14.tar.xz" -C "$PREFIX/glibc/bin"
+                    ;;
+            esac
+            ;;
+
+
+
+6)
+            dialog_msgbox "Có gì mới?" "\Z34 tháng tám\Zn\nĐã thêm tính năng thay đổi phiên bản mobox mà không cần phải cài lại mobox."
+            ;;
+        7)
+            dialog_msgbox "Setup nho nhỏ" "Bạn nên đổi thành wine 8.18 staging qua lựa chọn 4 trước khi dùng mobox."
+            ;;
+        8)
+            dialog_menu "Đổi phiên bản mobox" "" \
+            "1" "Đổi qua box86/64
+ (Chỉ hoạt động khi đã cài toàn bộ phiên bản mobox)"
+            ret2=$?
+            if [ $ret2 -eq 255 ]; then
+                continue
+            fi
+            case $ret2 in
+                1)
+                    clear
+                    echo "Lưu ý, khi đổi phiên bản mobox thì toàn bộ dữ liệu wine sẽ được giữ nguyên."
+                    sleep 2
+mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
+mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
+mv /data/data/com.termux/files/usr/glibc2 /data/data/com.termux/files/usr/glibc3
+
+ln -sf data/data/com.termux/usr/glibc/opt/scripts/mobox data/data/com.termux/usr/bin/nekobox
+ln -sf data/data/com.termux/usr/glibc/opt/scripts/mobox data/data/com.termux/usr/bin/mobox
+clear
+echo "Vui lòng khởi động lại mobox."
+sleep 2
+                    ;;
+            esac
+            ;;
+    esac
+done
+
+restore-termux-style
+

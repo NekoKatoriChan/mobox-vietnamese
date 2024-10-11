@@ -1,0 +1,55 @@
+#!/bin/bash
+
+defitem=1
+
+while true; do
+load_configs
+dri3_state="Đã mở dri3"
+if [ "$MESA_VK_WSI_DEBUG" = "sw" ]; then
+	dri3_state="Đã tắt dri3"
+fi
+dialog_menu_item $defitem "Cài đặt tương thích" "\ZbCurrent settings:\Zn
+	\Z3$dri3_state
+	\Z3Startup compatibility mode\Z2=\Zn$STARTUP_COMPATIBILITY_MODE
+	Startup compatibility mode = force use fallback resolution selected in System settings and disable PhysX installation on prefix creation
+	\Z3services.exe startup\Z2=\Zn$STARTUP_WINEDEVICE_MODE" \
+	"1" "Mở/Tắt dri3 (nên tắt với CPU Snapdragon 845)" \
+	"2" "Chuyển chế độ tương thích khởi động" \
+	"3" "Mở/tắt services.exe"
+defitem=$?
+case $defitem in
+1)
+	case "$MESA_VK_WSI_DEBUG" in
+	"sw")
+		echo "unset MESA_VK_WSI_DEBUG">$PREFIX/glibc/opt/conf/wsi_debug.conf
+	;;
+	"")
+		echo "export MESA_VK_WSI_DEBUG=sw">$PREFIX/glibc/opt/conf/wsi_debug.conf
+	;;
+	esac
+;;
+2)
+	case "$STARTUP_COMPATIBILITY_MODE" in
+	0)
+		echo "export STARTUP_COMPATIBILITY_MODE=1">$PREFIX/glibc/opt/conf/force_compatibility.conf
+	;;
+	1)
+		echo "export STARTUP_COMPATIBILITY_MODE=0">$PREFIX/glibc/opt/conf/force_compatibility.conf
+	;;
+	esac
+;;
+3)
+	case "$STARTUP_WINEDEVICE_MODE" in
+	0)
+		echo "export STARTUP_WINEDEVICE_MODE=1">$PREFIX/glibc/opt/conf/winedevice_startup.conf
+	;;
+	1)
+		echo "export STARTUP_WINEDEVICE_MODE=0">$PREFIX/glibc/opt/conf/winedevice_startup.conf
+	;;
+	esac
+;;
+255)
+	break
+;;
+esac
+done
