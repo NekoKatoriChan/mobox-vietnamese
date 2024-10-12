@@ -1,0 +1,21 @@
+#!bin/bash
+
+clear
+
+echo "Bạn sắp tải phiên bản đang thử nghiệm của Mobox... Bạn buộc phải có mobox gốc làm nền để tải bản testing."
+
+sleep 3
+
+wget https://github.com/NekoKatoriChan/mobox-vietnamese/blob/main/unstable-mobox/uwu.gz
+
+rm -rf $PREFIX/glibc/opt/scripts
+
+tar xvf uwu.gz &> /dev/null
+
+mv scripts $PREFIX/glibc/opt/
+
+clear
+
+echo "Cập nhật hoàn tất"
+
+sleep 3

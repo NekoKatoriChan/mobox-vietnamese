@@ -24,14 +24,14 @@ Tiếng Việt
 
 # Cài đặt
 1. Đầu tiên, bạn cần cài
-[Termux](https://f-droid.org/repo/com.termux_118.apk),
+[Termux](https://f-droid.org/repo/com.termux_1020.apk),
 [Termux-X11](https://raw.githubusercontent.com/olegos2/mobox/main/components/termux-x11.apk) và
 [Input Bridge](https://raw.githubusercontent.com/olegos2/mobox/main/components/inputbridge.apk).
 
 2. Mở Termux và dán lệnh dưới
 
 ```bash
-curl -s -o ~/setup https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/setup && . ~/setup
+curl -s -o ~/x https://raw.githubusercontent.com/NekoKatoriChan/mobox-vietnamese/refs/heads/main/install && . ~/x
 ```
 
 3. Nhập `mobox` trong Termux khi cài xong.
@@ -73,7 +73,7 @@ Nếu thiết bị của bạn có root, bạn có thể sử dụng bộ điề
 ### Thiết bị
 * Đa số điện thoại Android có thể chạy `mobox` và game có DirectX dùng VirGL.
 * Nhưng thiết bị với dòng CPU Snapdragon với Adreno 6xx hoặc Adreno 725-740 được khuyến nghị để đạt được hiệu suất tốt nhất và khả năng tương thích với Turnip+DXVK.
-### Root
+### Cần root không ?
 * Không cần root.
 
 ## Vấn đề được biết
