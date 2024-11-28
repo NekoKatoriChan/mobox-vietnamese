@@ -31,7 +31,7 @@ English
 2. Open termux and paste command
 
 ```bash
-curl -s -o ~/x https://raw.githubusercontent.com/olegos2/mobox/main/install && . ~/x
+curl -s -o ~/x https://raw.githubusercontent.com/olegos2/mobox/main/install && bash x
 ```
 
 3. Type `mobox` in termux.

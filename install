@@ -6,7 +6,7 @@ echo "Đang setup, đợi tí
 "
 pkg install termux-am -y &>/dev/null
 apt-get clean
-apt-get updat[Be >/dev/null 2>&1
+apt-get update >/dev/null 2>&1
 apt-get -y --with-new-pkgs -o Dpkg::Options::="--force-confdef" upgrade >/dev/null 2>&1
 pkg install x11-repo -y &>/dev/null
 pkg install pulseaudio -y &>/dev/null
@@ -81,19 +81,16 @@ echo "Đang cài mobox
 "
 
 function wget-git-q {
-    wget -q --retry-connrefused --tries=0 --header "PRIVATE-TOKEN: $PRIVATE_TOKEN" "https://gitlab.com/api/v4/projects/$PROJECT_ID/repository/files/$1/raw?ref=main" -O $2
+    wget -q --retry-connrefused --tries=0 "https://gitlab.com/api/v4/projects/$PROJECT_ID/repository/files/$1/raw?ref=main" -O $2
     return $?
 }
 
 echo "Cập nhật trình quản lý gói"
 mkdir -p $PREFIX/glibc/opt/package-manager/installed
-
 if [ "$INSTALL_WOW64" = "1" ]; then
-echo "PRIVATE_TOKEN=glpat-h5r7HjKoPKZPxmfg79xs
-PROJECT_ID=54240888">$PREFIX/glibc/opt/package-manager/token
+echo "PROJECT_ID=54240888">$PREFIX/glibc/opt/package-manager/token
 else
-echo "PRIVATE_TOKEN=glpat-Xs4HfrCkMpbedkPycqzP
-PROJECT_ID=52465323">$PREFIX/glibc/opt/package-manager/token
+echo "PROJECT_ID=52465323">$PREFIX/glibc/opt/package-manager/token
 fi
 
 . $PREFIX/glibc/opt/package-manager/token
@@ -126,7 +123,7 @@ rm -rf $PREFIX/glibc/opt/scripts
 wget https://github.com/NekoKatoriChan/mobox-vietnamese/raw/refs/heads/main/stable/uwu-box86.gz
 tar -xvf uwu-box86.gz
 mv scripts $PREFIX/glibc/opt/
-rm uwu.gz
+rm uwu-box86.gz
 fi
 clear
 
@@ -143,7 +140,7 @@ else
 echo "Cập nhật thành công."
 sleep 1
 clear
-echo 'Để mở mobox, nhập "mobox" hoặc "nekobox".'
+echo 'Để mở mobox, nhập mobox hoặc nekobox.'
 sleep 3
 fi
 fi
