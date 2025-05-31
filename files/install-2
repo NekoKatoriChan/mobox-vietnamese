@@ -8,9 +8,9 @@ INSTALL_WOW64=0
 
 echo "Vui lòng chọn 1 trong 2 phiên bản mobox
 "
-echo "1) Cài mobox chạy với box86/64
+echo "1) Cài mobox chạy với box64 (Nhẹ, hiệu năng cao, chỉ chạy mỗi 64bit)
 "
-echo "2) Cài mobox chạy mỗi box64 kèm wow64 (Khuyến nghị)
+echo "2) Cài mobox chạy mỗi box64 kèm wow64 (Khuyến nghị, tương thích cao)
 "
 echo ""
 echo -n "Chọn 1 trong 2 cái : "
@@ -31,51 +31,61 @@ echo "Đang cài mobox
 "
 
 function wget-git-q {
-    wget -q --retry-connrefused --tries=0 --header "PRIVATE-TOKEN: $PRIVATE_TOKEN" "https://gitlab.com/api/v4/projects/$PROJECT_ID/repository/files/$1/raw?ref=main" -O $2
+    wget -q --retry-connrefused --tries=0 "https://gitlab.com/api/v4/projects/$PROJECT_ID/repository/files/$1/raw?ref=main" -O "$2"
     return $?
 }
 
-echo "Cập nhật trình quản lý gói lần 2"
 mkdir -p $PREFIX/glibc/opt/package-manager/installed
 
 if [ "$INSTALL_WOW64" = "1" ]; then
-echo "PRIVATE_TOKEN=glpat-h5r7HjKoPKZPxmfg79xs
-PROJECT_ID=54240888">$PREFIX/glibc/opt/package-manager/token
+    echo "PROJECT_ID=54240888" > $PREFIX/glibc/opt/package-manager/token
 else
-echo "PRIVATE_TOKEN=glpat-Xs4HfrCkMpbedkPycqzP
-PROJECT_ID=52465323">$PREFIX/glibc/opt/package-manager/token
+    echo "PROJECT_ID=52465323" > $PREFIX/glibc/opt/package-manager/token
 fi
 
 . $PREFIX/glibc/opt/package-manager/token
+
 if ! wget-git-q "package-manager" "$PREFIX/glibc/opt/package-manager/package-manager"; then
-    echo "Download failed"
-    return 1
+    echo "Tải xuống thất bại" >&2
+    exit 1
 fi
+
 . $PREFIX/glibc/opt/package-manager/package-manager
 sync-all
 
 if [ "$INSTALL_WOW64" = "1" ]; then
-sync-package wine-8.18-staging-wow64
-rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
-wget https://files.catbox.moe/mtci1s.gz -O uwu.gz
-tar -xvf uwu.gz
-mv scripts /data/data/com.termux/files/usr/glibc/opt/
-rm uwu.gz
-rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
-wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu2 -O mobox_menu
-mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+    sync-package wine-9.3-vanilla-wow64
+
+    rm -rf $PREFIX/glibc/opt/scripts
+    wget https://github.com/NekoKatoriChan/mobox-vietnamese/raw/refs/heads/main/stable/uwu.gz
+    tar -xvf uwu.gz
+    mv scripts $PREFIX/glibc/opt/
+    chmod +x $PREFIX/glibc/opt/scripts/mobox
+    rm -f uwu.gz
+
+    wget https://files.catbox.moe/3n6ghr.xz -O wine.xz
+    tar -xJvf wine.xz
+    rm -f wine.xz
+
+    rm -rf $PREFIX/glibc/wine-9.3-vanilla-wow64/bin
+    rm -rf $PREFIX/glibc/wine-9.3-vanilla-wow64/lib
+    rm -rf $PREFIX/glibc/wine-9.3-vanilla-wow64/share
+
+    cd wine
+    mv bin $PREFIX/glibc/wine-9.3-vanilla-wow64/
+    mv lib $PREFIX/glibc/wine-9.3-vanilla-wow64/
+    mv share $PREFIX/glibc/wine-9.3-vanilla-wow64/
+    cd -
 else
-sync-package wine-ge-custom-8-25
-rm -rf /data/data/com.termux/files/usr/glibc/opt/scripts
-wget https://files.catbox.moe/yc6nbu.gz -O uwu.gz
-tar -xvf uwu.gz
-mv scripts /data/data/com.termux/files/usr/glibc/opt/
-rm uwu.gz
-rm /data/data/com.termux/files/usr/glibc/opt/scripts/mobox_menu
-wget https://raw.githubusercontent.com/NekoKatoriChan/mobox/main/files/mobox_menu
-mv mobox_menu /data/data/com.termux/files/usr/glibc/opt/scripts/
+    sync-package wine-ge-custom-8-25
+
+    rm -rf $PREFIX/glibc/opt/scripts
+    wget https://github.com/NekoKatoriChan/mobox-vietnamese/raw/refs/heads/main/stable/uwu-box86.gz
+    tar -xvf uwu-box86.gz
+    mv scripts $PREFIX/glibc/opt/
+    chmod +x $PREFIX/glibc/opt/scripts/mobox
+    rm -f uwu-box86.gz
 fi
-clear
 
 mv /data/data/com.termux/files/usr/glibc /data/data/com.termux/files/usr/glibc2
 mv /data/data/com.termux/files/usr/glibc3 /data/data/com.termux/files/usr/glibc
